@@ -38,6 +38,29 @@ ul {
   list-style-type: none;
 }
 
+h1{
+  font-family: var(--Lexend);
+  font-size: 40px;
+}
+
+h2{
+  font-family: var(--Lexend);
+}
+
+h3{
+  font-family: var(--Abel);
+  font-size: 21px;
+}
+
+button.btn{
+  border: none;
+  border-radius: 32px;
+  padding: 16px 48px;
+  font-size: 16px;
+  font-family: var(--Livvic);
+  cursor: pointer;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -170,6 +193,47 @@ ul {
 
 
 /* ----------x---------Navbar------------x--------- */
+
+/* ---------------------------------------------Main Content--------------------------------------------- */
+
+/* -------------Site Title------------- */
+main .site-title{
+  background-image: url(../assets/Background-image.png);
+  background-size: cover;
+  height: 110vh;
+  display: flex;
+  justify-content: center;
+}
+
+main .site-title .site-background{
+  padding-top: 160px;
+  text-align: center;
+  color: var(--white);
+}
+
+main .site-title h1, h3{
+  margin: 5px;
+}
+
+main .site-title .btn{
+  margin: 30px;
+  background: var(--sky);
+}
+
+main .site-title .btn:hover{
+  background: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+/* ------x------Site Title------x------ */
+
+
+
+
+
+
+
+/* ------------------------x--------------------Main Content------------------------x-------------------- */
 
 /*                 Viewport less then of equal to 750px                  */
 
