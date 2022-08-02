@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %} {% endblock title %}</title>
-
+    {% block bootstrapCSS %} {% endblock bootstrapCSS%}
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="../static/css/all.css">
 
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../static/css/aos.css">
 
     <!-- Custom Style   -->
+    {% block sheet %} {% endblock sheet%}
     <link rel="stylesheet" href="../static/css/Style.css">
 
 </head>
@@ -39,6 +40,8 @@
 
     <!-- Custom Javascript file -->
     <script src="../static/js/main.js"></script>
+    {% block bootstrapJS %}
+     {% endblock bootstrapJS%}
 </body>
 
 </html>

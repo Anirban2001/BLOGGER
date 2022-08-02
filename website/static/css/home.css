@@ -1,4 +1,3 @@
-
 @import url('../css/fonts.css');
 
 
@@ -58,7 +57,7 @@ h2{
 }
 
 h3{
-    font-family: var(--Abel);
+    font-family: var(--Lexend);
     font-size: 1.3rem;
 }
 
@@ -92,11 +91,39 @@ p{
 
 /* --------------- navbar ----------------- */
 
+/* ------login page--------- */
+.makecenter{
+    display: flex;
+    justify-content: center;
+}
+.form-group{
+    text-align: center;
+    
+}
+.form-label{
+    font-size: 23px;
+    font-family: var(--Lexend);
+}
+.form-input{
+    width: 500px;
+    margin: 10px 0px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 11px;
+}
+.btnlogin{
+    height: 40px;
+    width: 252px;
+    margin-left: 101px;
+    margin-top: 10px;
+}
+/* ------login page--------- */
 .nav{
     background: var(--new);
     padding: 0 2rem;
     height: 0rem;
-    min-height: 10vh;
+    min-height: 9vh;
     overflow: hidden;
     transition: height 1s ease-in-out;
 }
@@ -167,12 +194,12 @@ p{
     margin: 0;
 }
 
+
 .nav .nav-items .nav-link{
-    padding: 1.6rem 1rem;
+    padding: 1.8rem 1rem;
     font-size: 1.1rem;
     position: relative;
     font-family: var(--Abel);
-    font-size: 1.1rem;
 }
 
 .nav .nav-items .nav-link:hover{
@@ -188,10 +215,28 @@ p{
     padding: 1rem 0;
     display: block;
     font-family: var(--Lexend);
-    font-size: 1.6rem;
+}
+
+.button-item{
+    padding: 22px 6px;
+}
+.btnauth{
+    border: 2px solid black;
+    border-radius: 16px;
+    font-size: 15px;
+    padding: 5px 18px;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
+
+.btnauth:hover{
+    background: black;
+    border: 1px solid var(--white);
+    color: var(--white);
 }
 
 .nav .social{
+    margin-left: 20px;
     padding: 1.4rem 0
 }
 
