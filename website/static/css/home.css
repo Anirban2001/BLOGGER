@@ -220,14 +220,6 @@ p{
 .button-item{
     padding: 22px 6px;
 }
-.btnauth{
-    border: 2px solid black;
-    border-radius: 16px;
-    font-size: 15px;
-    padding: 5px 18px;
-    font-family: var(--Livvic);
-    cursor: pointer;
-}
 
 .btnauth:hover{
     background: black;
@@ -236,7 +228,6 @@ p{
 }
 
 .nav .social{
-    margin-left: 20px;
     padding: 1.4rem 0
 }
 

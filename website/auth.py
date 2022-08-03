@@ -1,9 +1,9 @@
 from flask import Blueprint, redirect, render_template, url_for, request, flash
 
-from website import views
+# from website import views
 from .import db 
 from .models import User
-from flask_login import current_user, login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # x -> hash_function ->hash (but there is no way to get x from hash)
@@ -11,6 +11,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint("auth", __name__)
 
+# @auth.route("/")
+@auth.route("/", methods=['GET', 'POST'])
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method=="POST":
@@ -44,14 +46,14 @@ def sign_up():
         username_exists = User.query.filter_by(username=username).first()
 
         if email_exists:
-            flash('Email is already in use.', catagory='error')
+            flash('Email is already in use.', category='error')
         elif username_exists:   
             flash('Username is already in use.', category='error')
         elif password1 != password2:
             flash('password don\'t match', category='error')
-        elif len(username)<2:
+        elif len(username) < 2:
             flash('Username is too short', category='error')
-        elif len(password1) <6:
+        elif len(password1) < 6:
             flash('password is too short.', category='error')
         else:
             new_user = User(email=email, username=username, password=generate_password_hash(password1, method='sha256'))
@@ -65,7 +67,7 @@ def sign_up():
     return render_template('signup.html')
 
 
-@auth.route("/logout", methods=['GET', 'POST'])
+@auth.route("/logout")
 @login_required
 def logout():
     logout_user()
