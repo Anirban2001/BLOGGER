@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %} Home {% endblock title %} 
+{% block customCSS %} <link rel="stylesheet" href="../static/css/home.css">{% endblock customCSS%}
 {% block content %}
     <!-- ----------------------------  Navigation ---------------------------------------------- -->
 
@@ -19,10 +20,10 @@
                         <a href="/home">Home</a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">About</a>
+                        <a href="/about">About</a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">Contact Us</a>
+                        <a href="/contact-us">Contact Us</a>
                     </li>
                 </ul>
             </div>
