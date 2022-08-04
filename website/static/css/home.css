@@ -90,35 +90,6 @@ p{
 /* ------x------- Global Classes -------x-------*/
 
 /* --------------- navbar ----------------- */
-
-/* ------login page--------- */
-.makecenter{
-    display: flex;
-    justify-content: center;
-}
-.form-group{
-    text-align: center;
-    
-}
-.form-label{
-    font-size: 23px;
-    font-family: var(--Lexend);
-}
-.form-input{
-    width: 500px;
-    margin: 10px 0px;
-    height: 30px;
-    border-radius: 8px;
-    font-size: 15px;
-    margin-bottom: 11px;
-}
-.btnlogin{
-    height: 40px;
-    width: 252px;
-    margin-left: 101px;
-    margin-top: 10px;
-}
-/* ------login page--------- */
 .nav{
     background: var(--new);
     padding: 0 2rem;
@@ -220,14 +191,23 @@ p{
 .button-item{
     padding: 22px 6px;
 }
+.btnlogout{
+    border: 2px solid black;
+    border-radius: 16px;
+    font-size: 15px;
+    padding: 5px 18px;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
 
-.btnauth:hover{
+.btnlogout:hover{
     background: black;
     border: 1px solid var(--white);
     color: var(--white);
 }
 
 .nav .social{
+    margin-left: 20px;
     padding: 1.4rem 0
 }
 

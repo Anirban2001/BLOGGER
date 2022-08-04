@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, url_for, request, flash
 
 # from website import views
-from .import db 
+from . import db 
 from .models import User
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,8 +11,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint("auth", __name__)
 
-# @auth.route("/")
-@auth.route("/", methods=['GET', 'POST'])
+@auth.route("/")
+def main():
+    if current_user.is_authenticated:
+        return redirect(url_for('views.home'))
+    else:
+        return redirect(url_for('auth.login'))
+
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method=="POST":
