@@ -18,7 +18,6 @@ def home():
     posts = Post.query.all()
     # print(current_user.id, current_user.email)
     current_time = datetime.utcnow()
-    image_folder = "../static/assets/Blog-post/"
     return render_template('home.html', user = current_user, posts=posts, current_time=current_time)
 
 @views.route('/create-blog', methods=['GET', 'POST'])
@@ -45,3 +44,9 @@ def create_blog():
         # return redirect(url_for('views.home'))
 
     return render_template('create_blog.html', user=current_user)
+
+@views.route('/each-blog/<int:blogid>', methods=['GET', 'POST'])
+@login_required
+def show_blog(blogid):
+    post = Post.query.filter_by(blogid=blogid).first()
+    return render_template('eachblog.html', user=current_user,post=post)

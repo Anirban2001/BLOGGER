@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', backref='user', passive_deletes=True)
 
 class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    blogid = db.Column(db.Integer, primary_key=True)
     blogtitle = db.Column(db.Text, nullable=False)
     blogdesc = db.Column(db.Text, nullable=False)
     blogimage = db.Column(db.String(100), unique=True)

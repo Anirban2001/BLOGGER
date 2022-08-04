@@ -73,7 +73,7 @@
                             <img src={{imagepath}} alt={{post.id}} width="345" height="282">
                             <div class="blog-title">
                                 <h3>{{post.blogtitle}}</h3>
-                                <a href="#"><button class="btn btn-blog">Read</button></a>
+                                <a href="/each-blog/{{post.blogid}}"><button class="btn btn-blog">Read</button></a>
                                 {% set timediffsec = (current_time-post.date_created).seconds %}
                                 {% set timediffday = timediffsec/(24*60*60) %}
                                 {% set timediffhour = timediffsec/(60*60) %}
@@ -114,12 +114,11 @@
                             <div class="post-info flex-row">
                                 <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
                                 <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14, 2022</span>
-                                <span>2 Commets</span>
+                                <span>2 Comments</span>
                             </div>
                         </div>
                         <div class="post-title">
-                            <a href="#">Why should boys have all the fun? it's the women who are making india an
-                                alcohol-loving contry</a>
+                            <a href="#">Why should boys have all the fun? it's the women who are making india an alcohol-loving contry</a>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
                                 adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
                                 nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
