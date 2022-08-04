@@ -70,11 +70,11 @@
                         {% for post in posts %}
                         <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
                             {% set imagepath = "../static/assets/Blog-post/"+post.blogimage %}
-                            <img src={{imagepath}} alt={{post.id}} width="345" height="282">
+                            <img src={{imagepath}} alt={{post.blogid}} width="345" height="282">
                             <div class="blog-title">
                                 <h3>{{post.blogtitle}}</h3>
                                 <a href="/each-blog/{{post.blogid}}"><button class="btn btn-blog">Read</button></a>
-                                {% set timediffsec = (current_time-post.date_created).seconds %}
+                                {% set timediffsec = (current_time - post.date_created).seconds %}
                                 {% set timediffday = timediffsec/(24*60*60) %}
                                 {% set timediffhour = timediffsec/(60*60) %}
                                 {% set timediffmin = timediffsec/60 %}
@@ -106,101 +106,31 @@
         <section class="container">
             <div class="site-content">
                 <div class="posts">
+                    {% for post in posts %}
+                    {% if loop.index < 5 %}
                     <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
                         <div class="post-image">
                             <div>
-                                <img src="../static/assets/Blog-post/Screenshot from 2022-06-17 01-42-00.png" class="img" alt="blog1">
+                                {% set imagepath = "../static/assets/Blog-post/"+post.blogimage %}
+                                <img src={{imagepath}} class="img" alt="post.blogid">
                             </div>
                             <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14, 2022</span>
+                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;{{post.user.username}}</span>
+                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;{{post.date_created}}</span>
                                 <span>2 Comments</span>
                             </div>
                         </div>
                         <div class="post-title">
-                            <a href="#">Why should boys have all the fun? it's the women who are making india an alcohol-loving contry</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
-                            </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
+                            <div class="post-title-view">{{post.blogtitle}}</div>
+                            <p>{{post.blogdesc | truncate(500)}}</p>
+                            <a href="/each-blog/{{post.blogid}}"><button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button></a>
                         </div>
                     </div>
+                    {% endif %} 
+                    {% if loop.index < 4 %}
                     <hr>
-                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-image">
-                            <div>
-                                <img src="../static/assets/Blog-post/blog2.png" class="img" alt="blog1">
-                            </div>
-                            <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 16, 2019</span>
-                                <span>7 Commets</span>
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href="#">Why should boys have all the fun? it's the women who are making india an
-                                alcohol-loving contry</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
-                            </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-image">
-                            <div>
-                                <img src="../static/assets/Blog-post/blog3.png" class="img" alt="blog1">
-                            </div>
-                            <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 19, 2019</span>
-                                <span>5 Commets</span>
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href="#">New data recording system to better analyse road accidents</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
-                            </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-image">
-                            <div>
-                                <img src="../static/assets/Blog-post/blog4.png" class="img" alt="blog1">
-                            </div>
-                            <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 21, 2019</span>
-                                <span>12 Commets</span>
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href="#">New data recording system to better analyse road accidents</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
-                            </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="pagination flex-row">
-                        <a href="#"><i class="fas fa-chevron-left"></i></a>
-                        <a href="#" class="pages">1</a>
-                        <a href="#" class="pages">2</a>
-                        <a href="#" class="pages">3</a>
-                        <a href="#"><i class="fas fa-chevron-right"></i></a>
-                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
                 <aside class="sidebar">
                     <div class="category">

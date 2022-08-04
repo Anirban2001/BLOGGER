@@ -375,7 +375,9 @@ main .site-content .post-content > .post-image .post-info span{
     margin: 0 .5rem;
 }
 
-main .post-content .post-title a{
+main .post-content .post-title .post-title-view{
+    text-decoration: none;
+    color: var(--text-gray);
     font-family: var(--Anton);
     font-size: 1.5rem;
 }
@@ -384,6 +386,10 @@ main .post-content .post-title a{
     border-radius: 0;
     padding: .7rem 1.5rem;
     background: var(--sky);
+}
+
+.site-content .post-content .post-title .post-btn:hover{
+    border: 2px solid black;
 }
 
 .site-content .pagination{

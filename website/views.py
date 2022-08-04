@@ -26,6 +26,7 @@ def create_blog():
     if request.method=="POST":
         blogtitle = request.form.get('blogtitle')
         blogdesc = request.form.get('blogdesc')
+        blogtype = request.form.get('blogtype')
         blogimage = request.files['blogimage']
         pathdir = os.path.abspath(os.path.dirname(__file__))
         # print(pathdir)
@@ -37,7 +38,7 @@ def create_blog():
         blogimage.save(os.path.join(pathpics, blogimage.filename))
         # print(type(blogdesc))
         # post = Post(blogtitle=blogtitle, blogdesc=blogdesc, )
-        post = Post(blogtitle=blogtitle, blogdesc=blogdesc, blogimage=blogimage.filename, author=current_user.id)
+        post = Post(blogtitle=blogtitle, blogdesc=blogdesc, blogtype=blogtype, blogimage=blogimage.filename, author=current_user.id)
         db.session.add(post)
         db.session.commit()
         flash("Post Created!", category='success')

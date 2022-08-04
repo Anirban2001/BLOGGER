@@ -4,3 +4,18 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.loginbg{
+    background-image: url(../assets/lbg1.jpg);
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    background-size: 100%
+}
+.signupbg{
+    background-image: url(../assets/lbg1.jpg);
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    background-size: 100%
+}

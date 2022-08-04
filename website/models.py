@@ -13,8 +13,9 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     blogid = db.Column(db.Integer, primary_key=True)
-    blogtitle = db.Column(db.Text, nullable=False)
+    blogtitle = db.Column(db.String(400), nullable=False)
     blogdesc = db.Column(db.Text, nullable=False)
+    blogtype = db.Column(db.String(50), nullable=False)
     blogimage = db.Column(db.String(100), unique=True)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     author = db.Column(db.Integer,db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
