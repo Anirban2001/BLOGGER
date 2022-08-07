@@ -23,11 +23,11 @@
 }
 
 
-div.display-butt {
+div.allbtn {
     display: flex;
     flex-direction: row;
-    justify-content:end;
-    padding: 30px;
+    justify-content:space-between;
+    padding: 20px 20px;
   }
 
 #update{
@@ -51,6 +51,7 @@ div.display-butt {
     color: var(--text-light);
     font-size: 1.5rem;
     margin-left: 20px;
+    margin-bottom: 150px;
 }
 
 .blogtitle{
@@ -60,4 +61,9 @@ div.display-butt {
     font-size: 3rem;
     margin-left: 20px;
     margin-top: 15px;
+}
+.update-delete-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

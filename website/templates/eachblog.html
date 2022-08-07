@@ -23,10 +23,18 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-    <div class="display-butt">
-        <a href="/update-blog/{{post.blogid}}"><button class="btn btn-dark btn-own" id="update">Update</button></a>
-        <a href="/delete-blog/{{post.blogid}}"><button class="btn btn-dark btn-own" id="delete">Delete</button>
-        </a>
+    <div class="allbtn">
+      <div>
+        <a href="/home"><button class="btn btn-dark btn-back">Back</button></a>
+      </div>
+      <div class="update-delete-btn">
+        <div>
+          <a href="/update-blog/{{post.blogid}}"><button class="btn btn-dark btn-own" id="update">Update</button></a>
+        </div>
+        <div>
+          <a href="/delete-blog/{{post.blogid}}"><button class="btn btn-dark btn-own" id="delete">Delete</button></a>
+        </div>
+      </div>
     </div>
     <div class="imagepos">
         {% set imagepath = "../static/assets/Blog-post/"+post.blogimage %}

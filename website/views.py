@@ -28,16 +28,15 @@ def create_blog():
         blogdesc = request.form.get('blogdesc')
         blogtype = request.form.get('blogtype')
         blogimage = request.files['blogimage']
-        pathdir = os.path.abspath(os.path.dirname(__file__))
-        # print(pathdir)
-        pathpics = os.path.join(pathdir, "static/assets/Blog-post")
-        # path_to_pic  = pathpics + blogimage.filename
-        # print(pathpics)
-        # print(blogimage.filename)
-        blogimage.filename = uuid.uuid4().hex + ".png"
-        blogimage.save(os.path.join(pathpics, blogimage.filename))
-        # print(type(blogdesc))
-        # post = Post(blogtitle=blogtitle, blogdesc=blogdesc, )
+
+        if not blogimage:
+            blogimage.filename = "blog-default.jpg"
+        else:
+            pathdir = os.path.abspath(os.path.dirname(__file__))
+            pathpics = os.path.join(pathdir, "static/assets/Blog-post")
+            blogimage.filename = uuid.uuid4().hex + blogimage.filename
+            blogimage.save(os.path.join(pathpics, blogimage.filename))
+
         post = Post(blogtitle=blogtitle, blogdesc=blogdesc, blogtype=blogtype, blogimage=blogimage.filename, author=current_user.id)
         db.session.add(post)
         db.session.commit()
@@ -51,3 +50,54 @@ def create_blog():
 def show_blog(blogid):
     post = Post.query.filter_by(blogid=blogid).first()
     return render_template('eachblog.html', user=current_user,post=post)
+
+@views.route('update-blog/<int:blogid>', methods=['GET', 'POST'])
+@login_required
+def update_blog(blogid):
+    if request.method == 'POST':
+        blogtitle = request.form.get('blogtitle')
+        blogdesc = request.form.get('blogdesc')
+        blogtype = request.form.get('blogtype')
+        blogimage = request.files['blogimage']
+        print("----------------------------------------------------")
+        print(blogtitle, blogdesc, blogtype, blogimage.filename)
+        print("----------------------------------------------------")
+        post = Post.query.filter_by(blogid=blogid).first()
+        if not post:
+            flash("post does not exist.", category='error')
+        elif current_user.id != post.author:
+            flash('You do not have permission to update this post.')
+        else:
+            post.blogtitle = blogtitle
+            post.blogdesc = blogdesc 
+            post.blogtype = blogtype 
+            if not blogimage:
+                post.blogimage = post.blogimage
+            else:
+                pathdir = os.path.abspath(os.path.dirname(__file__))
+                pathpics = os.path.join(pathdir, "static/assets/Blog-post")
+                blogimage.filename = uuid.uuid4().hex + blogimage.filename
+                blogimage.save(os.path.join(pathpics, blogimage.filename))
+                post.blogimage = blogimage.filename 
+            db.session.commit()
+            flash('Updated successfully', category='success')
+            redirect('')
+
+    post = Post.query.filter_by(blogid=blogid).first()
+    return render_template('update_blog.html', post = post, user=current_user)
+
+
+@views.route('delete-blog/<int:blogid>', methods=['GET', 'POST'])
+@login_required
+def delete_blog(blogid):
+    post = Post.query.filter_by(blogid=blogid).first()
+
+    if not post:
+        flash("post does not exist.", category='error')
+    elif current_user.id != post.author:
+        flash('You do not have permission to delete this post.')
+    else:
+        db.session.delete(post)
+        db.session.commit()
+    
+    return redirect(url_for('views.home'))

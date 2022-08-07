@@ -29,17 +29,17 @@
     {% endif %}
     {% endwith %}
     <div class="bgimage">
-      <a href="/home"><button class="btn btn-dark btn-back">Back</button></a>
+      <a href="/each-blog/{{post.blogid}}"><button class="btn btn-dark btn-back">Back</button></a>
       <div class="container">
-        <h1 align="center">Create a Blog</h1>
+        <h1 align="center">Update the Blog</h1>
           <form method="POST" enctype="multipart/form-data">
               <div class="mb-3">
                 <label for="blogtitle" class="form-label"><h4><strong>Blog title:</strong></h4></label>
-                <input type="text" class="form-control" id="blogtitle" name="blogtitle" placeholder="Enter blog title" required>
+                <input type="text" class="form-control" id="blogtitle" name="blogtitle" value={{post.blogtitle}} placeholder="Enter blog title" required>
               </div>
               <div class="mb-3">
                 <label for="blogdesc" class="form-label"><h4><strong>Blog Description:</strong></h4></label>
-                <textarea class="form-control" id="blogdesc" name="blogdesc" rows="10" placeholder="Enter blog description" required></textarea>
+                <textarea class="form-control" id="blogdesc" name="blogdesc" rows="10" placeholder="Enter blog description" required>{{post.blogdesc}} </textarea>
               </div>
               <div>
                 <label class="mb-3" for="blogtype"><h4><strong>Blog type:</strong></h4></label>
@@ -56,7 +56,7 @@
                 <label for="blogimage" class="form-label"><h4><strong>Upload Blog Image:</strong></h4></label>
                 <input type="file" id="blogimage" class="form-control" name="blogimage" accept="image/*">
               </div>
-              <div align="center"><button type="submit" class="btn btn-dark btn-view">Create Blog</button></div>
+              <div align="center"><button type="submit" class="btn btn-dark btn-view">Update Blog</button></div>
           </form>
       </div>
     </div>

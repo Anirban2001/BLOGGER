@@ -285,8 +285,10 @@ main .blog-post .blog-content{
     flex-direction: column;
     text-align: center;
     width: 80%;
+    height:450px;
     margin: 3rem 2rem;
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 main .blog-content .blog-title{
@@ -364,6 +366,7 @@ main .site-content .post-content > .post-image > div{
 
 main .site-content .post-content > .post-image .img{
     width: 100%;
+    height: 600px;
     transition: all 1s ease;
 }
 
