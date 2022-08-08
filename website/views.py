@@ -77,6 +77,8 @@ def update_blog(blogid):
                 pathpics = os.path.join(pathdir, "static/assets/Blog-post")
                 blogimage.filename = uuid.uuid4().hex + ".png"
                 blogimage.save(os.path.join(pathpics, blogimage.filename))
+                if post.blogimage != 'blog-default.png':
+                    os.remove(os.path.join(pathpics, post.blogimage))
                 post.blogimage = blogimage.filename
             db.session.commit()
             flash('Updated successfully', category='success')
@@ -94,8 +96,12 @@ def delete_blog(blogid):
     if not post:
         flash("post does not exist.", category='error')
     elif current_user.id != post.author:
-        flash('You do not have permission to delete this post.')
+        flash('You do not have permission to delete this post.', category='error')
     else:
+        pathdir = os.path.abspath(os.path.dirname(__file__))
+        pathpics = os.path.join(pathdir, "static/assets/Blog-post")
+        if post.blogimage != 'blog-default.png':
+            os.remove(os.path.join(pathpics, post.blogimage))
         db.session.delete(post)
         db.session.commit()
     
