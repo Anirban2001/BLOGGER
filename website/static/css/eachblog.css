@@ -72,3 +72,14 @@ div.allbtn {
     display: flex;
     justify-content: space-between;
 }
+
+.del-icon{
+    color: black;
+    font-size: 18px;
+}
+
+.like-icon{
+    margin-right: 25px;
+    padding-top: 7px;
+    font-size: 30px;
+}

@@ -1,8 +1,10 @@
 import os
+
+from website.auth import login
 from . import db
 from flask import Blueprint, redirect, render_template, request, flash, url_for
 from flask_login import login_required, current_user
-from .models import Post, Comment
+from .models import Post, Comment, Like
 from datetime import datetime
 import uuid
 filename = uuid.uuid4().hex
@@ -53,9 +55,7 @@ def show_blog(blogid):
         comment = Comment(commentdesc=commentdesc, author=current_user.id, post_id=blogid)
         db.session.add(comment)
         db.session.commit()
-        post = Post.query.filter_by(blogid=blogid).first()
-        # return render_template('eachblog.html', user=current_user, post = post)
-        return redirect(f'/each-blog/{blogid}')
+        return redirect(url_for('views.show_blog', blogid=blogid))
     post = Post.query.filter_by(blogid=blogid).first()
     return render_template('eachblog.html', user=current_user,post=post)
 
@@ -127,4 +127,20 @@ def delete_comment(commentid):
     else:
         db.session.delete(comment)
         db.session.commit()
-    return redirect(f'/each-blog/{post.blogid}')
+    return redirect(url_for('views.show_blog', blogid = post.blogid))
+
+@views.route('like-post/<int:blogid>')
+@login_required
+def like_post(blogid):
+    post = Post.query.filter_by(blogid = blogid).first()
+    like = Like.query.filter_by(author=current_user.id, post_id=blogid).first()
+    if not post:
+        flash('Post does not exist', category='success')
+    elif like:
+        db.session.delete(like)
+        db.session.commit()
+    else:
+        dolike = Like(author = current_user.id, post_id=blogid)
+        db.session.add(dolike)
+        db.session.commit()
+    return redirect(url_for('views.show_blog', blogid=blogid))
