@@ -67,3 +67,8 @@ div.allbtn {
     flex-direction: row;
     justify-content: space-between;
 }
+
+.row-flex{
+    display: flex;
+    justify-content: space-between;
+}

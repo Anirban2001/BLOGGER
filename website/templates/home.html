@@ -117,7 +117,8 @@
                             <div class="post-info flex-row">
                                 <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;{{post.user.username}}</span>
                                 <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;{{post.date_created}}</span>
-                                <span>2 Comments</span>
+                                {% set noofcomments = post.comments | length %}
+                                <span>{{noofcomments}} comments</span>
                             </div>
                         </div>
                         <div class="post-title">

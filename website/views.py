@@ -2,7 +2,7 @@ import os
 from . import db
 from flask import Blueprint, redirect, render_template, request, flash, url_for
 from flask_login import login_required, current_user
-from .models import Post
+from .models import Post, Comment
 from datetime import datetime
 import uuid
 filename = uuid.uuid4().hex
@@ -48,6 +48,14 @@ def create_blog():
 @views.route('/each-blog/<int:blogid>', methods=['GET', 'POST'])
 @login_required
 def show_blog(blogid):
+    if request.method == 'POST':
+        commentdesc = request.form.get('commentdesc')
+        comment = Comment(commentdesc=commentdesc, author=current_user.id, post_id=blogid)
+        db.session.add(comment)
+        db.session.commit()
+        post = Post.query.filter_by(blogid=blogid).first()
+        # return render_template('eachblog.html', user=current_user, post = post)
+        return redirect(f'/each-blog/{blogid}')
     post = Post.query.filter_by(blogid=blogid).first()
     return render_template('eachblog.html', user=current_user,post=post)
 
@@ -106,3 +114,17 @@ def delete_blog(blogid):
         db.session.commit()
     
     return redirect(url_for('views.home'))
+
+@views.route('delete-comment/<int:commentid>')
+@login_required
+def delete_comment(commentid):
+    comment = Comment.query.filter_by(commentid=commentid).first()
+    post = Post.query.filter_by(blogid = comment.post_id).first()
+    if not comment:
+        flash('comment does not exist', category='error')
+    elif current_user.id != comment.author:
+        flash('You do not have permission to delete this comment.', category='error')
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+    return redirect(f'/each-blog/{post.blogid}')
