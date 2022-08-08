@@ -30,11 +30,11 @@ def create_blog():
         blogimage = request.files['blogimage']
 
         if not blogimage:
-            blogimage.filename = "blog-default.jpg"
+            blogimage.filename = 'blog-default.png'
         else:
             pathdir = os.path.abspath(os.path.dirname(__file__))
             pathpics = os.path.join(pathdir, "static/assets/Blog-post")
-            blogimage.filename = uuid.uuid4().hex + blogimage.filename
+            blogimage.filename = uuid.uuid4().hex + ".png"
             blogimage.save(os.path.join(pathpics, blogimage.filename))
 
         post = Post(blogtitle=blogtitle, blogdesc=blogdesc, blogtype=blogtype, blogimage=blogimage.filename, author=current_user.id)
@@ -63,25 +63,24 @@ def update_blog(blogid):
         print(blogtitle, blogdesc, blogtype, blogimage.filename)
         print("----------------------------------------------------")
         post = Post.query.filter_by(blogid=blogid).first()
+        print(post.blogid, post.blogtitle, post.blogdesc, post.blogtype, post.blogimage)
         if not post:
             flash("post does not exist.", category='error')
         elif current_user.id != post.author:
-            flash('You do not have permission to update this post.')
+            flash('You do not have permission to update this post.', category='error')
         else:
             post.blogtitle = blogtitle
             post.blogdesc = blogdesc 
             post.blogtype = blogtype 
-            if not blogimage:
-                post.blogimage = post.blogimage
-            else:
+            if blogimage:
                 pathdir = os.path.abspath(os.path.dirname(__file__))
                 pathpics = os.path.join(pathdir, "static/assets/Blog-post")
-                blogimage.filename = uuid.uuid4().hex + blogimage.filename
+                blogimage.filename = uuid.uuid4().hex + ".png"
                 blogimage.save(os.path.join(pathpics, blogimage.filename))
-                post.blogimage = blogimage.filename 
+                post.blogimage = blogimage.filename
             db.session.commit()
             flash('Updated successfully', category='success')
-            redirect('')
+            # redirect('')
 
     post = Post.query.filter_by(blogid=blogid).first()
     return render_template('update_blog.html', post = post, user=current_user)
