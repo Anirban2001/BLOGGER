@@ -267,6 +267,10 @@ main .site-title .btn:hover{
 
 /* --------------- Blog Carousel ------------ */
 
+.recpos{
+    position: absolute;
+}
+
 main .blog{
     background: url('../assets/Abract01.png');
     background-repeat: no-repeat;
