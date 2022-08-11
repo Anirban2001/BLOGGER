@@ -235,7 +235,7 @@ p{
 
 /* --------------- Site title ---------------- */
 main .site-title{
-    background: url('../assets/Background-image.png');
+    background: url('../assets/background-image.jpg');
     background-size: cover;
     height: 110vh;
     display: flex;
@@ -335,6 +335,10 @@ section .container .owl-nav{
 /* -------x------- Blog Carousel -----x------ */
 
 /* ---------------- Site Content ----------------*/
+
+.container{
+    padding-bottom: 100px;
+}
 
 main .site-content{
     display: grid;
@@ -440,10 +444,10 @@ main .post-content .post-title .post-title-view{
     padding: 1rem 0;
 }
 
-.site-content .sidebar .popular-post h2{
+/* .site-content .sidebar .popular-post h2{
     padding-left: 35px;
     
-}
+} */
 
 .site-content .sidebar .popular-post .post-info{
     padding: .4rem .1rem !important;

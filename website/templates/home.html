@@ -20,13 +20,13 @@
                         <a href="/home">Home</a>
                     </li>
                     <li class="nav-link">
-                        <a href="/about">About</a>
+                        <a href="#about">About</a>
                     </li>
                     <li class="nav-link">
                         <a href="/create-blog">Create a Blog</a>
                     </li>
                     <li class="nav-link">
-                        <a href="/contact-us">Contact Us</a>
+                        <a href="#contact-us">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -53,9 +53,9 @@
 
         <section class="site-title">
             <div class="site-background" data-aos="fade-up" data-aos-delay="100">
-                <h3>Tours & Travels</h3>
-                <h1>Amazing Place on Earth</h1>
-                <button class="btn">Explore</button>
+                <!-- <h3>Tours & Travels</h3> -->
+                <h1>Create Your Own Blog</h1>
+                <a href="#explore"><button class="btn">Explore</button></a>
             </div>
         </section>
 
@@ -64,30 +64,30 @@
         <!-- --------------------- Blog Carousel ----------------- -->
 
         <section>
-           
+            <a name="explore"></a>
             <div class="blog">
                 <div class="container">
                     <h2 class="recpos">Recently Posted</h2>
                     <div class="owl-carousel owl-theme blog-post">
-                        {% for post in posts %}
+                        {% for post in posts|sort(attribute='date_created', reverse = True) %}
                         <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
                             {% set imagepath = "../static/assets/Blog-post/"+post.blogimage %}
                             <img src={{imagepath}} alt={{post.blogid}} width="345" height="280">
                             <div class="blog-title">
                                 <h3>{{post.blogtitle}}</h3>
                                 <a href="/each-blog/{{post.blogid}}"><button class="btn btn-blog">Read</button></a>
-                                {% set timediffsec = (current_time - post.date_created).seconds %}
-                                {% set timediffday = timediffsec/(24*60*60) %}
-                                {% set timediffhour = timediffsec/(60*60) %}
-                                {% set timediffmin = timediffsec/60 %}
-                                {% if timediffday | int > 0 %}
-                                <span>{{timediffday | int}} days ago</span>
-                                {% elif timediffhour | int > 0 %}
-                                <span>{{timediffhour | int}} hours ago</span>
-                                {% elif timediffmin | int > 0 %}
-                                <span>{{timediffmin | int}} minutes ago</span>
-                                {% elif timediffsec | int > 0 %}
-                                <span>{{timediffsec | int}} seconds ago</span>
+                                {% set timediffsec = ((current_time - post.date_created).seconds) | int %}
+                                {% set timediffday = (timediffsec/(86400)) | int %}
+                                {% set timediffhour = (timediffsec/(3600)) | int %}
+                                {% set timediffmin = (timediffsec/60) | int %}
+                                {% if timediffday > 0 %}
+                                <span>{{timediffday}} days ago</span>
+                                {% elif timediffhour > 0 %}
+                                <span>{{timediffhour}} hours ago</span>
+                                {% elif timediffmin > 0 %}
+                                <span>{{timediffmin}} minutes ago</span>
+                                {% elif timediffsec > 0 %}
+                                <span>{{timediffsec}} seconds ago</span>
                                 {% endif %}
                             </div>
                         </div>
@@ -134,32 +134,38 @@
                     <hr>
                     {% endif %}
                     {% endfor %}
-                    <div class="pagination">
+                    <!-- <div class="pagination">
                         <a href="#"><i class="fas fa-chevron-left"></i></a>
                         <a href="#">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#"><i class="fas fa-chevron-right"></i></a>
-                    </div>
+                    </div> -->
                 </div>
                 <aside class="sidebar">
                     <div class="popular-post">
                         <h2>Popular Post</h2>
+                        {% for post in posts|sort(attribute='comments', reverse=True) %}
+                        {% if loop.index < 5 %}
                         <div class="post-content" data-aos="flip-up" data-aos-delay="200">
                             <div class="post-image">
                                 <div>
-                                    <img src="../static/assets/popular-post/m-blog-1.jpg" class="img" alt="blog1">
+                                    {% set imagepath = "../static/assets/Blog-post/"+post.blogimage %}
+                                    <img src={{imagepath}} class="img" alt="post.blogid">
                                 </div>
                                 <div class="post-info flex-row">
-                                    <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14,
-                                        2019</span>
-                                    <span>2 Commets</span>
+                                    <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;{{post.date_created}}</span>
+                                    <span>{{post.comments | length}} comments</span>
                                 </div>
                             </div>
                             <div class="post-title">
-                                <a href="#">New data recording system to better analyse road accidents</a>
+                                <div class="post-title-view">
+                                    {{post.blogtitle}}
+                                </div>
                             </div>
                         </div>   
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </aside>
             </div>
@@ -175,6 +181,8 @@
     <!-- --------------------------- Footer ---------------------------------------- -->
 
     <footer class="footer">
+        <a name="about"></a>
+        <a name="contact-us"></a>
         <div class="container">
             <div class="about-us" data-aos="fade-right" data-aos-delay="200">
                 <h2>About us</h2>
@@ -182,11 +190,8 @@
                     iure, autem nulla tenetur repellendus.</p>
             </div>
             <div class="newsletter" data-aos="fade-right" data-aos-delay="200">
-                <h2>Newsletter</h2>
-                <p>Stay update with our latest</p>
-                <div class="form-element">
-                    <input type="text" placeholder="Email"><span><i class="fas fa-chevron-right"></i></span>
-                </div>
+                <h2>Contact us</h2>
+                <p>blogger@gmail.com</p>
             </div>
             <div class="instagram" data-aos="fade-left" data-aos-delay="200">
                 <h2>Instagram</h2>
